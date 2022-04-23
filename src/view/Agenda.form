@@ -24,9 +24,17 @@
             <Property name="text" type="java.lang.String" value="Op&#xe7;&#xf5;es"/>
           </Properties>
           <SubComponents>
+            <MenuItem class="javax.swing.JMenuItem" name="jMenuItemAgendar">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Agendar Cliente"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItemAgendarActionPerformed"/>
+              </Events>
+            </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItemAddAdm">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Adcionar Administrador"/>
+                <Property name="text" type="java.lang.String" value="Adicionar Administrador"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItemAddAdmActionPerformed"/>

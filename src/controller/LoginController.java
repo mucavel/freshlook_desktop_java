@@ -81,7 +81,7 @@ public class LoginController {
         setPassword(password);
         
         try {
-            cmd = conn.prepareStatement("SELECT nome, pass FROM admin WHERE nome=? and pass=md5(?)");
+            cmd = conn.prepareStatement("SELECT nome, pass FROM administradores WHERE nome=? and pass=md5(?)");
             cmd.setString(1, getNome());
             cmd.setString(2, getPassword());
             ResultSet rs = cmd.executeQuery();

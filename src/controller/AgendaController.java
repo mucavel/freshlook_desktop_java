@@ -14,6 +14,7 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import model.Model;
 import view.AdicionarADM;
+import view.Agendamento;
 import view.ConfirmarID;
 import view.Login;
 
@@ -25,6 +26,7 @@ public class AgendaController {
     Login login = new Login();
     AdicionarADM addAdm = new AdicionarADM();
     ConfirmarID confID = new ConfirmarID();
+    Agendamento agendamento = new Agendamento();
     Model model = new Model();
     Conexao conexao = new Conexao();
     
@@ -47,9 +49,9 @@ public class AgendaController {
     public boolean addAdmin(String nome, String password) {
         Connection conn = conexao.conexao();
         try {
-            PreparedStatement cmd = conn.prepareStatement("INSERT INTO `admin`(`nome`, `pass`) VALUES (?,md5(?))");
-            cmd.setString(1, model.getNome());
-            cmd.setString(2, model.getPassword());
+            PreparedStatement cmd = conn.prepareStatement("INSERT INTO `administradores`(`nome`, `pass`) VALUES (?,md5(?))");
+            cmd.setString(1, nome);
+            cmd.setString(2, password);
             cmd.executeUpdate();
             return true;
             
@@ -61,6 +63,10 @@ public class AgendaController {
 
     public void erro_add() {
         JOptionPane.showMessageDialog(null, "Erro ao adicionar!");
+    }
+
+    public void agendar() {
+        agendamento.setVisible(true);
     }
     
     

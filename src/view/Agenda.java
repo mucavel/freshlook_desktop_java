@@ -59,6 +59,7 @@ public class Agenda extends javax.swing.JFrame {
         jMenuBloquear = new javax.swing.JMenu();
         jMenuItemBloquear = new javax.swing.JMenuItem();
         jMenuOpcoes = new javax.swing.JMenu();
+        jMenuItemAgendar = new javax.swing.JMenuItem();
         jMenuItemAddAdm = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
         jMenuItemSair = new javax.swing.JMenuItem();
@@ -185,7 +186,15 @@ public class Agenda extends javax.swing.JFrame {
 
         jMenuOpcoes.setText("Opções");
 
-        jMenuItemAddAdm.setText("Adcionar Administrador");
+        jMenuItemAgendar.setText("Agendar Cliente");
+        jMenuItemAgendar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemAgendarActionPerformed(evt);
+            }
+        });
+        jMenuOpcoes.add(jMenuItemAgendar);
+
+        jMenuItemAddAdm.setText("Adicionar Administrador");
         jMenuItemAddAdm.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItemAddAdmActionPerformed(evt);
@@ -257,7 +266,12 @@ public class Agenda extends javax.swing.JFrame {
 //        System.out.println(row);
         
     }//GEN-LAST:event_jButtonRemoverActionPerformed
-    private void clientesHoje(){
+
+    private void jMenuItemAgendarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemAgendarActionPerformed
+        // AGENDAMENTO
+       agendaC.agendar();
+    }//GEN-LAST:event_jMenuItemAgendarActionPerformed
+    public void clientesHoje(){
         DateTimeFormatter date = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         LocalDate localdate = LocalDate.now();
         String dia = localdate.format(date);
@@ -293,7 +307,7 @@ public class Agenda extends javax.swing.JFrame {
             Logger.getLogger(Agenda.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    private void todosClientes(){
+    public void todosClientes(){
         int c;
         try {
             query = conexao.conexao().prepareStatement("SELECT * FROM clientes ORDER BY dia");
@@ -371,6 +385,7 @@ public class Agenda extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar;
     private javax.swing.JMenu jMenuBloquear;
     private javax.swing.JMenuItem jMenuItemAddAdm;
+    private javax.swing.JMenuItem jMenuItemAgendar;
     private javax.swing.JMenuItem jMenuItemBloquear;
     private javax.swing.JMenuItem jMenuItemSair;
     private javax.swing.JMenu jMenuOpcoes;
