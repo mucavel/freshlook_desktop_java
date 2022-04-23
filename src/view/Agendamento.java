@@ -42,8 +42,8 @@ public class Agendamento extends javax.swing.JFrame {
         jLabelPreco = new javax.swing.JLabel();
         jTextFieldPreco = new javax.swing.JTextField();
         jLabelDia = new javax.swing.JLabel();
+        jDateChooserDia = new com.toedter.calendar.JDateChooser();
         jLabelHora = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
         jTextField2 = new javax.swing.JTextField();
         jLabelObserv = new javax.swing.JLabel();
         jScrollPaneTxtArea = new javax.swing.JScrollPane();
@@ -139,15 +139,17 @@ public class Agendamento extends javax.swing.JFrame {
         jLabelDia.setForeground(new java.awt.Color(255, 255, 255));
         jLabelDia.setText("Dia");
         getContentPane().add(jLabelDia);
-        jLabelDia.setBounds(350, 120, 50, 19);
+        jLabelDia.setBounds(330, 120, 50, 19);
+
+        jDateChooserDia.setDateFormatString("yyyy-MM-dd");
+        getContentPane().add(jDateChooserDia);
+        jDateChooserDia.setBounds(330, 150, 210, 40);
 
         jLabelHora.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabelHora.setForeground(new java.awt.Color(255, 255, 255));
         jLabelHora.setText("Hora");
         getContentPane().add(jLabelHora);
         jLabelHora.setBounds(330, 200, 50, 19);
-        getContentPane().add(jTextField1);
-        jTextField1.setBounds(330, 150, 210, 40);
         getContentPane().add(jTextField2);
         jTextField2.setBounds(330, 230, 210, 40);
 
@@ -169,6 +171,11 @@ public class Agendamento extends javax.swing.JFrame {
         jButtonAgendar.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jButtonAgendar.setForeground(new java.awt.Color(255, 255, 255));
         jButtonAgendar.setText("Agendar");
+        jButtonAgendar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAgendarActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButtonAgendar);
         jButtonAgendar.setBounds(630, 310, 130, 40);
 
@@ -205,6 +212,33 @@ public class Agendamento extends javax.swing.JFrame {
         // CORTE
         
     }//GEN-LAST:event_jComboBoxCorteActionPerformed
+
+    private void jButtonAgendarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAgendarActionPerformed
+        // Agendar
+        try{
+            String nome = jTextFieldNome.getText();
+            String tel = jTextFieldTel.getText();
+            String telSub = tel.substring(0,2);
+            if(tel.length() != 9){
+                agendaControll.numberError();
+            }else{
+                int telefone = Integer.parseInt(jTextFieldTel.getText());
+                int idade = Integer.parseInt(jTextFieldIdade.getText());
+                String corte = String.valueOf(jComboBoxCorte.getSelectedItem());
+                String dia = String.valueOf(jDateChooserDia.getDate());
+                String observ = jTextAreaTxtArea.getText();
+            
+                agendaControll.dados(nome, telefone, idade, corte, dia, observ, telSub);
+                System.out.println(telSub);
+            }
+            
+        } catch(NumberFormatException | StringIndexOutOfBoundsException e){
+            agendaControll.numberError();
+        }
+
+        
+        
+    }//GEN-LAST:event_jButtonAgendarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -245,6 +279,7 @@ public class Agendamento extends javax.swing.JFrame {
     private javax.swing.JButton jButtonAgendar;
     private javax.swing.JButton jButtonSair;
     private javax.swing.JComboBox<String> jComboBoxCorte;
+    private com.toedter.calendar.JDateChooser jDateChooserDia;
     private javax.swing.JLabel jLabelAgendamento;
     private javax.swing.JLabel jLabelAgendamentoFundo;
     private javax.swing.JLabel jLabelCorte;
@@ -258,7 +293,6 @@ public class Agendamento extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelTelefone;
     private javax.swing.JScrollPane jScrollPaneTxtArea;
     private javax.swing.JTextArea jTextAreaTxtArea;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextFieldIdade;
     private javax.swing.JTextField jTextFieldNome;
