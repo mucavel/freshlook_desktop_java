@@ -6,7 +6,7 @@
 package view;
 
 import controller.AgendamentoController;
-
+import java.text.SimpleDateFormat;
 /**
  *
  * @author Carlos Mucavel
@@ -44,7 +44,7 @@ public class Agendamento extends javax.swing.JFrame {
         jLabelDia = new javax.swing.JLabel();
         jDateChooserDia = new com.toedter.calendar.JDateChooser();
         jLabelHora = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        jComboBoxHora = new javax.swing.JComboBox<>();
         jLabelObserv = new javax.swing.JLabel();
         jScrollPaneTxtArea = new javax.swing.JScrollPane();
         jTextAreaTxtArea = new javax.swing.JTextArea();
@@ -124,8 +124,9 @@ public class Agendamento extends javax.swing.JFrame {
         jLabelPreco.setBounds(30, 440, 50, 19);
 
         jTextFieldPreco.setEditable(false);
-        jTextFieldPreco.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jTextFieldPreco.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         jTextFieldPreco.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextFieldPreco.setText("50 Meticais");
         jTextFieldPreco.setBorder(null);
         jTextFieldPreco.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -150,8 +151,10 @@ public class Agendamento extends javax.swing.JFrame {
         jLabelHora.setText("Hora");
         getContentPane().add(jLabelHora);
         jLabelHora.setBounds(330, 200, 50, 19);
-        getContentPane().add(jTextField2);
-        jTextField2.setBounds(330, 230, 210, 40);
+
+        jComboBoxHora.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "09:00", "17:30" }));
+        getContentPane().add(jComboBoxHora);
+        jComboBoxHora.setBounds(330, 230, 210, 40);
 
         jLabelObserv.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabelObserv.setForeground(new java.awt.Color(255, 255, 255));
@@ -210,7 +213,8 @@ public class Agendamento extends javax.swing.JFrame {
 
     private void jComboBoxCorteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxCorteActionPerformed
         // CORTE
-        
+        int index = jComboBoxCorte.getSelectedIndex();
+        definirPreco(index);
     }//GEN-LAST:event_jComboBoxCorteActionPerformed
 
     private void jButtonAgendarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAgendarActionPerformed
@@ -220,20 +224,30 @@ public class Agendamento extends javax.swing.JFrame {
             String tel = jTextFieldTel.getText();
             String telSub = tel.substring(0,2);
             if(tel.length() != 9){
-                agendaControll.numberError();
+                agendaControll.numeroErro();
             }else{
                 int telefone = Integer.parseInt(jTextFieldTel.getText());
-                int idade = Integer.parseInt(jTextFieldIdade.getText());
-                String corte = String.valueOf(jComboBoxCorte.getSelectedItem());
-                String dia = String.valueOf(jDateChooserDia.getDate());
-                String observ = jTextAreaTxtArea.getText();
+                try{
+                    int idade = Integer.parseInt(jTextFieldIdade.getText());
+                    String corte = String.valueOf(jComboBoxCorte.getSelectedItem());
+                    String preco = jTextFieldPreco.getText();
+                    SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
+                    String dia = date.format(jDateChooserDia.getDate());
+                    String hora = String.valueOf(jComboBoxHora.getSelectedItem());
+                    String observ = jTextAreaTxtArea.getText();
             
-                agendaControll.dados(nome, telefone, idade, corte, dia, observ, telSub);
-                System.out.println(telSub);
+                    if(agendaControll.dados(nome, telefone, idade, corte, preco, dia, hora, observ, telSub)){
+                        jTextFieldNome.setText("");
+                    }else{
+                        agendaControll.agendaErro();
+                    }
+                } catch (NumberFormatException r){
+                    agendaControll.idadeErro();
+                }
             }
             
         } catch(NumberFormatException | StringIndexOutOfBoundsException e){
-            agendaControll.numberError();
+            agendaControll.numeroErro();
         }
 
         
@@ -279,6 +293,7 @@ public class Agendamento extends javax.swing.JFrame {
     private javax.swing.JButton jButtonAgendar;
     private javax.swing.JButton jButtonSair;
     private javax.swing.JComboBox<String> jComboBoxCorte;
+    private javax.swing.JComboBox<String> jComboBoxHora;
     private com.toedter.calendar.JDateChooser jDateChooserDia;
     private javax.swing.JLabel jLabelAgendamento;
     private javax.swing.JLabel jLabelAgendamentoFundo;
@@ -293,10 +308,41 @@ public class Agendamento extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelTelefone;
     private javax.swing.JScrollPane jScrollPaneTxtArea;
     private javax.swing.JTextArea jTextAreaTxtArea;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextFieldIdade;
     private javax.swing.JTextField jTextFieldNome;
     private javax.swing.JTextField jTextFieldPreco;
     private javax.swing.JTextField jTextFieldTel;
     // End of variables declaration//GEN-END:variables
+
+    private void definirPreco(int indexValue) {
+        int index = indexValue;
+        
+        switch (index) {
+            
+        case 0:
+            jTextFieldPreco.setText("50 Meticais");
+            break;
+        case 1:
+            jTextFieldPreco.setText("80 Meticais");
+            break;
+        case 2:
+            jTextFieldPreco.setText("150 Meticais");
+            break; 
+        case 3:
+            jTextFieldPreco.setText("120 Meticais");
+            break; 
+        case 4:
+            jTextFieldPreco.setText("100 Meticais");
+            break;
+        case 5:
+            jTextFieldPreco.setText("130 Meticais");
+            break;
+        case 6:
+            jTextFieldPreco.setText("200 Meticais");
+            break;
+        default:
+            break;
+    }
+        
+    }
 }

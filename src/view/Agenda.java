@@ -154,8 +154,8 @@ public class Agenda extends javax.swing.JFrame {
             jTableTabela.getColumnModel().getColumn(1).setMaxWidth(100);
             jTableTabela.getColumnModel().getColumn(2).setMinWidth(50);
             jTableTabela.getColumnModel().getColumn(2).setMaxWidth(50);
-            jTableTabela.getColumnModel().getColumn(3).setMinWidth(120);
-            jTableTabela.getColumnModel().getColumn(3).setMaxWidth(120);
+            jTableTabela.getColumnModel().getColumn(3).setMinWidth(150);
+            jTableTabela.getColumnModel().getColumn(3).setMaxWidth(150);
             jTableTabela.getColumnModel().getColumn(4).setMinWidth(100);
             jTableTabela.getColumnModel().getColumn(4).setMaxWidth(100);
             jTableTabela.getColumnModel().getColumn(5).setMinWidth(100);
