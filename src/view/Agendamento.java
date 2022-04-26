@@ -18,6 +18,7 @@ public class Agendamento extends javax.swing.JFrame {
      */
     public Agendamento() {
         initComponents();
+        
     }
 
     /**
@@ -145,6 +146,7 @@ public class Agendamento extends javax.swing.JFrame {
         jDateChooserDia.setDateFormatString("yyyy-MM-dd");
         getContentPane().add(jDateChooserDia);
         jDateChooserDia.setBounds(330, 150, 210, 40);
+        jDateChooserDia.setDate(jDateChooserDia.getDate());
 
         jLabelHora.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabelHora.setForeground(new java.awt.Color(255, 255, 255));
@@ -216,9 +218,10 @@ public class Agendamento extends javax.swing.JFrame {
         int index = jComboBoxCorte.getSelectedIndex();
         definirPreco(index);
     }//GEN-LAST:event_jComboBoxCorteActionPerformed
-
+    
     private void jButtonAgendarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAgendarActionPerformed
         // Agendar
+        
         try{
             String nome = jTextFieldNome.getText();
             String tel = jTextFieldTel.getText();
@@ -238,11 +241,17 @@ public class Agendamento extends javax.swing.JFrame {
             
                     if(agendaControll.dados(nome, telefone, idade, corte, preco, dia, hora, observ, telSub)){
                         jTextFieldNome.setText("");
+                        jTextFieldTel.setText("");
+                        jTextFieldIdade.setText("");
+                        jTextAreaTxtArea.setText("");
+                        
                     }else{
                         agendaControll.agendaErro();
                     }
                 } catch (NumberFormatException r){
                     agendaControll.idadeErro();
+                } catch (NullPointerException n){
+                    agendaControll.dataErro();
                 }
             }
             

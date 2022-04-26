@@ -146,6 +146,7 @@ public class Agenda extends javax.swing.JFrame {
             }
         });
         jTableTabela.setRowHeight(26);
+        jTableTabela.getTableHeader().setReorderingAllowed(false);
         jScrollPaneTabela.setViewportView(jTableTabela);
         if (jTableTabela.getColumnModel().getColumnCount() > 0) {
             jTableTabela.getColumnModel().getColumn(0).setMinWidth(220);
