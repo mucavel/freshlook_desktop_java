@@ -29,10 +29,10 @@ public class AgendamentoController {
     
     
     public boolean isValid(String name){
-        return Pattern.matches("[a-zA-Z]+", name);
+        return Pattern.matches("|^[\\pL\\s]+$|u", name);
     }
     public boolean dados(String nome, int telefone, int idade, String corte, String preco, String dia, String hora, String observ, String telSub) {  
-        dadosAgenda.setNome(nome.replace(" ", ""));
+        dadosAgenda.setNome(nome);
         dadosAgenda.setTelefone(telefone);
         dadosAgenda.setIdade(idade);
         dadosAgenda.setCorte(corte);
