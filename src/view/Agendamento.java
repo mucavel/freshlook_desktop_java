@@ -7,6 +7,9 @@ package view;
 
 import controller.AgendamentoController;
 import java.text.SimpleDateFormat;
+import java.time.DayOfWeek;
+import java.time.LocalDate;
+import java.util.Date;
 /**
  *
  * @author Carlos Mucavel
@@ -18,7 +21,7 @@ public class Agendamento extends javax.swing.JFrame {
      */
     public Agendamento() {
         initComponents();
-        
+        hora();
     }
 
     /**
@@ -55,6 +58,7 @@ public class Agendamento extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("v2.0 - Agendamento");
+        setResizable(false);
         getContentPane().setLayout(null);
 
         jLabelAgendamento.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
@@ -77,6 +81,11 @@ public class Agendamento extends javax.swing.JFrame {
 
         jTextFieldNome.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         jTextFieldNome.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextFieldNome.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextFieldNomeKeyTyped(evt);
+            }
+        });
         getContentPane().add(jTextFieldNome);
         jTextFieldNome.setBounds(30, 150, 240, 40);
 
@@ -88,6 +97,11 @@ public class Agendamento extends javax.swing.JFrame {
 
         jTextFieldTel.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         jTextFieldTel.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextFieldTel.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextFieldTelKeyTyped(evt);
+            }
+        });
         getContentPane().add(jTextFieldTel);
         jTextFieldTel.setBounds(30, 230, 240, 40);
 
@@ -99,6 +113,11 @@ public class Agendamento extends javax.swing.JFrame {
 
         jTextFieldIdade.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         jTextFieldIdade.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextFieldIdade.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextFieldIdadeKeyTyped(evt);
+            }
+        });
         getContentPane().add(jTextFieldIdade);
         jTextFieldIdade.setBounds(30, 310, 90, 40);
 
@@ -129,11 +148,6 @@ public class Agendamento extends javax.swing.JFrame {
         jTextFieldPreco.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jTextFieldPreco.setText("50 Meticais");
         jTextFieldPreco.setBorder(null);
-        jTextFieldPreco.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldPrecoActionPerformed(evt);
-            }
-        });
         getContentPane().add(jTextFieldPreco);
         jTextFieldPreco.setBounds(30, 470, 240, 40);
 
@@ -146,7 +160,8 @@ public class Agendamento extends javax.swing.JFrame {
         jDateChooserDia.setDateFormatString("yyyy-MM-dd");
         getContentPane().add(jDateChooserDia);
         jDateChooserDia.setBounds(330, 150, 210, 40);
-        jDateChooserDia.setDate(jDateChooserDia.getDate());
+        jDateChooserDia.setMinSelectableDate(new Date());
+        jDateChooserDia.setDate(new Date());
 
         jLabelHora.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabelHora.setForeground(new java.awt.Color(255, 255, 255));
@@ -154,7 +169,6 @@ public class Agendamento extends javax.swing.JFrame {
         getContentPane().add(jLabelHora);
         jLabelHora.setBounds(330, 200, 50, 19);
 
-        jComboBoxHora.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "09:00", "17:30" }));
         getContentPane().add(jComboBoxHora);
         jComboBoxHora.setBounds(330, 230, 210, 40);
 
@@ -166,7 +180,13 @@ public class Agendamento extends javax.swing.JFrame {
 
         jTextAreaTxtArea.setColumns(20);
         jTextAreaTxtArea.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        jTextAreaTxtArea.setLineWrap(true);
         jTextAreaTxtArea.setRows(5);
+        jTextAreaTxtArea.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextAreaTxtAreaKeyTyped(evt);
+            }
+        });
         jScrollPaneTxtArea.setViewportView(jTextAreaTxtArea);
 
         getContentPane().add(jScrollPaneTxtArea);
@@ -198,15 +218,11 @@ public class Agendamento extends javax.swing.JFrame {
 
         jLabelAgendamentoFundo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/fundoAgenda.jpg"))); // NOI18N
         getContentPane().add(jLabelAgendamentoFundo);
-        jLabelAgendamentoFundo.setBounds(-6, -5, 790, 550);
+        jLabelAgendamentoFundo.setBounds(-6, -5, 810, 560);
 
         setSize(new java.awt.Dimension(795, 575));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jTextFieldPrecoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldPrecoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldPrecoActionPerformed
 
     private void jButtonSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSairActionPerformed
         // SAIR/VOLTAR
@@ -221,7 +237,6 @@ public class Agendamento extends javax.swing.JFrame {
     
     private void jButtonAgendarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAgendarActionPerformed
         // Agendar
-        
         try{
             String nome = jTextFieldNome.getText();
             String tel = jTextFieldTel.getText();
@@ -244,7 +259,6 @@ public class Agendamento extends javax.swing.JFrame {
                         jTextFieldTel.setText("");
                         jTextFieldIdade.setText("");
                         jTextAreaTxtArea.setText("");
-                        
                     }else{
                         agendaControll.agendaErro();
                     }
@@ -258,11 +272,53 @@ public class Agendamento extends javax.swing.JFrame {
         } catch(NumberFormatException | StringIndexOutOfBoundsException e){
             agendaControll.numeroErro();
         }
-
-        
-        
     }//GEN-LAST:event_jButtonAgendarActionPerformed
 
+    private void jTextFieldTelKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldTelKeyTyped
+        // Max length TELEFONE
+        if (jTextFieldTel.getText().length()>=9) {
+            getToolkit().beep();
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTextFieldTelKeyTyped
+
+    private void jTextFieldNomeKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldNomeKeyTyped
+        // MAX LENGTH NOME
+        if(jTextFieldNome.getText().length() >=30){
+            getToolkit().beep();
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTextFieldNomeKeyTyped
+
+    private void jTextFieldIdadeKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldIdadeKeyTyped
+        // MAX LENGTH IDADE
+        if(jTextFieldIdade.getText().length() >=2){
+            getToolkit().beep();
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTextFieldIdadeKeyTyped
+
+    private void jTextAreaTxtAreaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextAreaTxtAreaKeyTyped
+        // MAX LENGTH OBSERVACOES
+        if(jTextAreaTxtArea.getText().length() >=120){
+            getToolkit().beep();
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTextAreaTxtAreaKeyTyped
+    private void hora(){
+        LocalDate local = LocalDate.now();
+        DayOfWeek dw = DayOfWeek.from(local);
+        int val = dw.getValue();
+        System.out.println(dw+" "+val);
+        int hm = 8;
+        int hmx = 22;
+        if(val == 4){
+            for(int i = hm; i <hmx; i++){
+                jComboBoxHora.addItem(String.valueOf(i)+":00");
+                jComboBoxHora.addItem(String.valueOf(i)+":30");
+            }
+        }
+    }
     /**
      * @param args the command line arguments
      */
