@@ -9,6 +9,7 @@ import controller.AgendamentoController;
 import java.text.SimpleDateFormat;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.time.Month;
 import java.util.Date;
 /**
  *
@@ -306,19 +307,40 @@ public class Agendamento extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jTextAreaTxtAreaKeyTyped
     private void hora(){
-        LocalDate local = LocalDate.now();
-        DayOfWeek dw = DayOfWeek.from(local);
-        int val = dw.getValue();
-        System.out.println(dw+" "+val);
-        int hm = 8;
-        int hmx = 22;
-        if(val == 4){
-            for(int i = hm; i <hmx; i++){
+        SimpleDateFormat dataAno = new SimpleDateFormat("yyyy");
+        SimpleDateFormat dataMes = new SimpleDateFormat("MMMM");
+        SimpleDateFormat dataDia = new SimpleDateFormat("dd");
+        String anos = dataAno.format(jDateChooserDia.getDate());
+        String meses = dataMes.format(jDateChooserDia.getDate());
+        String dias = dataDia.format(jDateChooserDia.getDate());
+        int dia = Integer.parseInt(dias);
+        int ano = Integer.parseInt(anos);
+        String mes = meses;
+        LocalDate local = LocalDate.of(ano, Month.APRIL, dia);
+        DayOfWeek DiaSemana = DayOfWeek.from(local); //SUBSTITUIR O LOCAL PELA DATA SELECIONADA NO INPUT
+        
+        int diaSemana = DiaSemana.getValue();
+        if(diaSemana >=1 && diaSemana <=5){
+            int horaMin = 8;
+            int horaMax = 22;
+            
+            for(int i = horaMin; i<horaMax; i++){
+                jComboBoxHora.addItem(String.valueOf(i)+":00");
+                jComboBoxHora.addItem(String.valueOf(i)+":30");
+            }
+        }else{
+            int horaMin = 9;
+            int horaMax = 19;
+            
+            for(int i = horaMin; i<horaMax; i++){
                 jComboBoxHora.addItem(String.valueOf(i)+":00");
                 jComboBoxHora.addItem(String.valueOf(i)+":30");
             }
         }
+        
+        System.out.println(diaSemana);
     }
+ 
     /**
      * @param args the command line arguments
      */

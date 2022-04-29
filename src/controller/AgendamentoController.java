@@ -75,6 +75,7 @@ public class AgendamentoController {
                                 JOptionPane.showMessageDialog(null, "Agendado com sucesso!");
 
                                 return true;
+                                
                             }
                         } catch (SQLException ex) {
                             Logger.getLogger(AgendamentoController.class.getName()).log(Level.SEVERE, null, ex);
