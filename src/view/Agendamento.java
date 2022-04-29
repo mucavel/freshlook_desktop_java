@@ -220,7 +220,7 @@ public class Agendamento extends javax.swing.JFrame {
         getContentPane().add(jButtonSair);
         jButtonSair.setBounds(630, 370, 130, 40);
 
-        jLabelAgendamentoFundo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/fundoAgenda.jpg"))); // NOI18N
+        jLabelAgendamentoFundo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/fundoAgendamento.jpg"))); // NOI18N
         getContentPane().add(jLabelAgendamentoFundo);
         jLabelAgendamentoFundo.setBounds(-6, -5, 810, 560);
 
@@ -319,6 +319,7 @@ public class Agendamento extends javax.swing.JFrame {
         jDateChooserDia.setDate(new Date());
     }
     private void hora(){
+        jComboBoxHora.removeAllItems();
         SimpleDateFormat dateFr = new SimpleDateFormat("yyyy-MM-dd");
         String data = dateFr.format(jDateChooserDia.getDate());
         LocalDate atualDate = LocalDate.parse(data);
@@ -342,8 +343,6 @@ public class Agendamento extends javax.swing.JFrame {
                 jComboBoxHora.addItem(String.valueOf(i)+":30");
             }
         }
-        
-        System.out.println(diaSemana);
     }
  
     /**

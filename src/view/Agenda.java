@@ -73,19 +73,19 @@ public class Agenda extends javax.swing.JFrame {
         jLabelTitle.setForeground(new java.awt.Color(255, 255, 255));
         jLabelTitle.setText("Salão de Cabelereiro");
         getContentPane().add(jLabelTitle);
-        jLabelTitle.setBounds(390, 10, 250, 30);
+        jLabelTitle.setBounds(400, 10, 250, 30);
 
         jLabelFreshLook.setFont(new java.awt.Font("Monotype Corsiva", 0, 32)); // NOI18N
         jLabelFreshLook.setForeground(new java.awt.Color(255, 255, 255));
         jLabelFreshLook.setText("Fresh Look");
         getContentPane().add(jLabelFreshLook);
-        jLabelFreshLook.setBounds(440, 50, 180, 37);
+        jLabelFreshLook.setBounds(450, 50, 180, 37);
 
-        jLabelAgenda.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabelAgenda.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jLabelAgenda.setForeground(new java.awt.Color(255, 255, 255));
         jLabelAgenda.setText("Agenda");
         getContentPane().add(jLabelAgenda);
-        jLabelAgenda.setBounds(480, 160, 90, 24);
+        jLabelAgenda.setBounds(470, 170, 90, 40);
 
         jButtonRemover.setBackground(new java.awt.Color(204, 0, 51));
         jButtonRemover.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N

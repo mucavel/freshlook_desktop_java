@@ -388,7 +388,7 @@
     <Component class="javax.swing.JLabel" name="jLabelAgendamentoFundo">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/view/images/fundoAgenda.jpg"/>
+          <Image iconType="3" name="/view/images/fundoAgendamento.jpg"/>
         </Property>
       </Properties>
       <Constraints>
