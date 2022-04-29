@@ -9,7 +9,6 @@ import controller.AgendamentoController;
 import java.text.SimpleDateFormat;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
-import java.time.Month;
 import java.util.Date;
 /**
  *
@@ -22,7 +21,7 @@ public class Agendamento extends javax.swing.JFrame {
      */
     public Agendamento() {
         initComponents();
-        hora();
+        data();
     }
 
     /**
@@ -159,10 +158,14 @@ public class Agendamento extends javax.swing.JFrame {
         jLabelDia.setBounds(330, 120, 50, 19);
 
         jDateChooserDia.setDateFormatString("yyyy-MM-dd");
+        jDateChooserDia.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                jDateChooserDiaPropertyChange(evt);
+            }
+        });
         getContentPane().add(jDateChooserDia);
         jDateChooserDia.setBounds(330, 150, 210, 40);
         jDateChooserDia.setMinSelectableDate(new Date());
-        jDateChooserDia.setDate(new Date());
 
         jLabelHora.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabelHora.setForeground(new java.awt.Color(255, 255, 255));
@@ -306,18 +309,20 @@ public class Agendamento extends javax.swing.JFrame {
             evt.consume();
         }
     }//GEN-LAST:event_jTextAreaTxtAreaKeyTyped
+
+    private void jDateChooserDiaPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jDateChooserDiaPropertyChange
+        // Input data
+        jComboBoxHora.removeAllItems();
+        hora();
+    }//GEN-LAST:event_jDateChooserDiaPropertyChange
+    private void data(){
+        jDateChooserDia.setDate(new Date());
+    }
     private void hora(){
-        SimpleDateFormat dataAno = new SimpleDateFormat("yyyy");
-        SimpleDateFormat dataMes = new SimpleDateFormat("MMMM");
-        SimpleDateFormat dataDia = new SimpleDateFormat("dd");
-        String anos = dataAno.format(jDateChooserDia.getDate());
-        String meses = dataMes.format(jDateChooserDia.getDate());
-        String dias = dataDia.format(jDateChooserDia.getDate());
-        int dia = Integer.parseInt(dias);
-        int ano = Integer.parseInt(anos);
-        String mes = meses;
-        LocalDate local = LocalDate.of(ano, Month.APRIL, dia);
-        DayOfWeek DiaSemana = DayOfWeek.from(local); //SUBSTITUIR O LOCAL PELA DATA SELECIONADA NO INPUT
+        SimpleDateFormat dateFr = new SimpleDateFormat("yyyy-MM-dd");
+        String data = dateFr.format(jDateChooserDia.getDate());
+        LocalDate atualDate = LocalDate.parse(data);
+        DayOfWeek DiaSemana = DayOfWeek.from(atualDate);
         
         int diaSemana = DiaSemana.getValue();
         if(diaSemana >=1 && diaSemana <=5){
