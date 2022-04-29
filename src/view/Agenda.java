@@ -90,7 +90,7 @@ public class Agenda extends javax.swing.JFrame {
         jButtonRemover.setBackground(new java.awt.Color(204, 0, 51));
         jButtonRemover.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         jButtonRemover.setForeground(new java.awt.Color(255, 255, 255));
-        jButtonRemover.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/delete.png"))); // NOI18N
+        jButtonRemover.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/remover.png"))); // NOI18N
         jButtonRemover.setText("Remover Cliente");
         jButtonRemover.setBorder(null);
         jButtonRemover.addActionListener(new java.awt.event.ActionListener() {
@@ -111,7 +111,7 @@ public class Agenda extends javax.swing.JFrame {
         getContentPane().add(jComboBoxClientes);
         jComboBoxClientes.setBounds(10, 170, 130, 40);
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/refresh.png"))); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/atualizar.png"))); // NOI18N
         jButton1.setText("Atualizar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -175,6 +175,7 @@ public class Agenda extends javax.swing.JFrame {
 
         jMenuBloquear.setText("Bloquear");
 
+        jMenuItemBloquear.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/bloquear.png"))); // NOI18N
         jMenuItemBloquear.setText("Bloquear");
         jMenuItemBloquear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -187,6 +188,7 @@ public class Agenda extends javax.swing.JFrame {
 
         jMenuOpcoes.setText("Opções");
 
+        jMenuItemAgendar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/cliente.png"))); // NOI18N
         jMenuItemAgendar.setText("Agendar Cliente");
         jMenuItemAgendar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -195,6 +197,7 @@ public class Agenda extends javax.swing.JFrame {
         });
         jMenuOpcoes.add(jMenuItemAgendar);
 
+        jMenuItemAddAdm.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/admin.png"))); // NOI18N
         jMenuItemAddAdm.setText("Adicionar Administrador");
         jMenuItemAddAdm.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -207,6 +210,7 @@ public class Agenda extends javax.swing.JFrame {
 
         jMenu1.setText("Sair");
 
+        jMenuItemSair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/sair.png"))); // NOI18N
         jMenuItemSair.setText("Sair");
         jMenuItemSair.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
