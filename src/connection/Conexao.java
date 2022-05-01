@@ -20,12 +20,14 @@ public class Conexao {
         
         Connection conn = null;
         try {
-            String url = "jdbc:mysql://127.0.0.1/freshlookDB?user=root&password=";
-//            String url = "jdbc:mysql://sql303.epizy.com:3306/epiz_31486113_freshlookdb?user=epiz_31486113&password=tX4cN8mxv11mb";
+            //LOCAL SERVER
+//            String url = "jdbc:mysql://127.0.0.1/freshlookDB?user=root&password=";
+            //REMOTE SERVER
+            String url = "jdbc:mysql://sql4.freesqldatabase.com:3306/sql4489222?user=sql4489222&password=MLTvjMPe7K";
             conn = DriverManager.getConnection(url);
             
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Ocorreu um erro ao conectar a base de dados!");
+            JOptionPane.showMessageDialog(null, "Ocorreu um erro! Verifique sua conexão.");
         } 
         return conn;
     } 

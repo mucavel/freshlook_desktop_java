@@ -5,6 +5,7 @@
  */
 package view;
 
+import com.sun.glass.events.KeyEvent;
 import controller.LoginController;
 import model.Model;
 
@@ -37,6 +38,7 @@ public class Login extends javax.swing.JFrame {
         jPasswordField = new javax.swing.JPasswordField();
         jButtonSair = new javax.swing.JButton();
         jButtonEntrar = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
         jLabelFundoLogin = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -56,6 +58,11 @@ public class Login extends javax.swing.JFrame {
 
         jTextFieldUsuario.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         jTextFieldUsuario.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextFieldUsuario.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTextFieldUsuarioKeyPressed(evt);
+            }
+        });
         getContentPane().add(jTextFieldUsuario);
         jTextFieldUsuario.setBounds(280, 70, 200, 50);
 
@@ -66,6 +73,11 @@ public class Login extends javax.swing.JFrame {
         jLabelPassword.setBounds(280, 130, 110, 19);
 
         jPasswordField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jPasswordField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jPasswordFieldKeyPressed(evt);
+            }
+        });
         getContentPane().add(jPasswordField);
         jPasswordField.setBounds(280, 160, 200, 50);
 
@@ -93,6 +105,10 @@ public class Login extends javax.swing.JFrame {
         getContentPane().add(jButtonEntrar);
         jButtonEntrar.setBounds(400, 240, 80, 40);
 
+        jLabel1.setDisabledIcon(null);
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(210, 90, 70, 100);
+
         jLabelFundoLogin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/fundoLogin.jpg"))); // NOI18N
         getContentPane().add(jLabelFundoLogin);
         jLabelFundoLogin.setBounds(-6, -5, 520, 310);
@@ -110,6 +126,23 @@ public class Login extends javax.swing.JFrame {
 
     private void jButtonEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEntrarActionPerformed
         // ENTRAR
+        entrar();
+    }//GEN-LAST:event_jButtonEntrarActionPerformed
+
+    private void jTextFieldUsuarioKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldUsuarioKeyPressed
+        // TODO add your handling code here:
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+            entrar();
+        }
+    }//GEN-LAST:event_jTextFieldUsuarioKeyPressed
+
+    private void jPasswordFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPasswordFieldKeyPressed
+        // TODO add your handling code here:
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+           entrar();
+        }
+    }//GEN-LAST:event_jPasswordFieldKeyPressed
+    private void entrar(){
         
         model.setNome(jTextFieldUsuario.getText());
         model.setPassword(jPasswordField.getText());
@@ -122,8 +155,7 @@ public class Login extends javax.swing.JFrame {
             jPasswordField.setText("");
             jTextFieldUsuario.requestFocus();
         }
-    }//GEN-LAST:event_jButtonEntrarActionPerformed
-
+    }
     /**
      * @param args the command line arguments
      */
@@ -162,6 +194,7 @@ public class Login extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonEntrar;
     private javax.swing.JButton jButtonSair;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabelFundoLogin;
     private javax.swing.JLabel jLabelLogo;
     private javax.swing.JLabel jLabelPassword;
