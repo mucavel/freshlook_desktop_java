@@ -12,7 +12,6 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import model.Model;
 import view.AdicionarADM;
 import view.Agendamento;
 import view.ConfirmarID;
@@ -27,11 +26,7 @@ public class AgendaController {
     AdicionarADM addAdm = new AdicionarADM();
     ConfirmarID confID = new ConfirmarID();
     Agendamento agendamento = new Agendamento();
-    Model model = new Model();
     Conexao conexao = new Conexao();
-    
-    
-    
     
     public boolean bloquear() {
         login.setVisible(true);

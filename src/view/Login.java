@@ -7,7 +7,6 @@ package view;
 
 import com.sun.glass.events.KeyEvent;
 import controller.LoginController;
-import model.Model;
 
 /**
  *
@@ -42,7 +41,7 @@ public class Login extends javax.swing.JFrame {
         jLabelFundoLogin = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("v2.0 - Login");
+        setTitle("v3.0 - Login");
         setResizable(false);
         getContentPane().setLayout(null);
 
@@ -104,8 +103,6 @@ public class Login extends javax.swing.JFrame {
         });
         getContentPane().add(jButtonEntrar);
         jButtonEntrar.setBounds(400, 240, 80, 40);
-
-        jLabel1.setDisabledIcon(null);
         getContentPane().add(jLabel1);
         jLabel1.setBounds(210, 90, 70, 100);
 
@@ -118,7 +115,6 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
     
     LoginController loginC = new LoginController();
-    Model model = new Model();
     private void jButtonSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSairActionPerformed
         // SAIR
         if(loginC.sair());
@@ -143,11 +139,10 @@ public class Login extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jPasswordFieldKeyPressed
     private void entrar(){
+        String nome = (jTextFieldUsuario.getText());
+        String password = (jPasswordField.getText());
         
-        model.setNome(jTextFieldUsuario.getText());
-        model.setPassword(jPasswordField.getText());
-        
-        if(loginC.entrar(model.getNome(), model.getPassword())){
+        if(loginC.entrar(nome, password)){
             dispose();
         }else{
             loginC.erro_login();

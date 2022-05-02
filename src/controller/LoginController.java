@@ -25,45 +25,32 @@ public class LoginController {
     Connection conn = conexao.conexao();
     PreparedStatement cmd;
     
-    private String nome, password; 
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
     //----------------------------FUNCTIONS-------------------//
 
-    public boolean entrar(String nome, String password) {
-        setNome(nome);
-        setPassword(password);
-        
-        try {
-            cmd = conn.prepareStatement("SELECT nome, pass FROM administradores WHERE nome=? and pass=md5(?)");
-            cmd.setString(1, getNome());
-            cmd.setString(2, getPassword());
-            ResultSet rs = cmd.executeQuery();
-            if(rs.next()){
-                Agenda agenda = new Agenda();
-                agenda.setVisible(true);
-                return true;
+    public boolean entrar(String nomeUser, String password) {
+        String nome = nomeUser;
+        String pass = password;
+        if(nome == null || nome.isEmpty() || nome.trim().isEmpty() || pass == null || pass.isEmpty() || pass.trim().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Preencha todos campos!");
+            return false;
+        }else{
+            try {
+                cmd = conn.prepareStatement("SELECT nome, pass FROM administradores WHERE nome=? and pass=md5(?)");
+                cmd.setString(1, nome);
+                cmd.setString(2, pass);
+                ResultSet rs = cmd.executeQuery();
+                if(rs.next()){
+                    Agenda agenda = new Agenda();
+                    agenda.setVisible(true);
+                    return true;
+                }
+            } catch (SQLException sql) {
+                JOptionPane.showMessageDialog(null, "Erro na base de dados");
+            }catch (NullPointerException nullpointer){
+                JOptionPane.showMessageDialog(null, "Erro!");
             }
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Erro:"+e.getMessage());
-        }catch (NullPointerException nl){
-            JOptionPane.showMessageDialog(null, "Erro");
+  
         }
-        
         return false;
     }
 
@@ -77,13 +64,13 @@ public class LoginController {
     }
 
     public boolean confirm(String nome, String password) {
-        setNome(nome);
-        setPassword(password);
+        String nomeConf = nome;
+        String passConf = password;
         
         try {
             cmd = conn.prepareStatement("SELECT nome, pass FROM administradores WHERE nome=? and pass=md5(?)");
-            cmd.setString(1, getNome());
-            cmd.setString(2, getPassword());
+            cmd.setString(1, nomeConf);
+            cmd.setString(2, passConf);
             ResultSet rs = cmd.executeQuery();
             if(rs.next()){
                 AdicionarADM addADM = new AdicionarADM();

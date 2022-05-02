@@ -6,8 +6,8 @@
 package view;
 
 import controller.LoginController;
-import model.Model;
-
+import java.awt.event.KeyEvent;
+import javax.swing.JOptionPane;
 /**
  *
  * @author Carlos Mucavel
@@ -39,7 +39,7 @@ public class ConfirmarID extends javax.swing.JFrame {
         jLabelIDfundo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("v2.0 - Identidade");
+        setTitle("v3.0 - Identidade");
         setResizable(false);
         getContentPane().setLayout(null);
 
@@ -51,11 +51,21 @@ public class ConfirmarID extends javax.swing.JFrame {
 
         jTextFieldConfirm.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         jTextFieldConfirm.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextFieldConfirm.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTextFieldConfirmKeyPressed(evt);
+            }
+        });
         getContentPane().add(jTextFieldConfirm);
         jTextFieldConfirm.setBounds(50, 60, 170, 40);
 
         jPasswordFieldConfirm.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         jPasswordFieldConfirm.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jPasswordFieldConfirm.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jPasswordFieldConfirmKeyPressed(evt);
+            }
+        });
         getContentPane().add(jPasswordFieldConfirm);
         jPasswordFieldConfirm.setBounds(50, 130, 170, 40);
 
@@ -85,26 +95,44 @@ public class ConfirmarID extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
     
     private void jButtonConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConfirmActionPerformed
-        // CONFIRMAR
-        LoginController loginC = new LoginController();
-        Model model = new Model();
-        
-        model.setNome(jTextFieldConfirm.getText());
-        model.setPassword(jPasswordFieldConfirm.getText());
-        
-        if(loginC.confirm(model.getNome(), model.getPassword())){
-            jTextFieldConfirm.setText("");
-            jPasswordFieldConfirm.setText("");
-            jTextFieldConfirm.requestFocus();
-            dispose();
-        }else{
-            loginC.erro_login();
-            jTextFieldConfirm.setText("");
-            jPasswordFieldConfirm.setText("");
-            jTextFieldConfirm.requestFocus();
-        }
+        confirmar();
     }//GEN-LAST:event_jButtonConfirmActionPerformed
 
+    private void jTextFieldConfirmKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldConfirmKeyPressed
+        //ENTER PRESSED
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+            confirmar();
+        }
+    }//GEN-LAST:event_jTextFieldConfirmKeyPressed
+
+    private void jPasswordFieldConfirmKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPasswordFieldConfirmKeyPressed
+        // ENTER PRESSED
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+            confirmar();
+        }
+    }//GEN-LAST:event_jPasswordFieldConfirmKeyPressed
+    private void confirmar(){
+        // CONFIRMAR
+        LoginController loginC = new LoginController();
+
+        String nome = jTextFieldConfirm.getText();
+        String password = jPasswordFieldConfirm.getText();
+        if(nome == null || nome.isEmpty() || nome.trim().isEmpty() || password == null || password.isEmpty() || password.trim().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Preencha todos campos!");
+        }else{
+            if(loginC.confirm(nome,password)){
+                jTextFieldConfirm.setText("");
+                jPasswordFieldConfirm.setText("");
+                jTextFieldConfirm.requestFocus();
+                dispose();
+            }else{
+                loginC.erro_login();
+                jTextFieldConfirm.setText("");
+                jPasswordFieldConfirm.setText("");
+                jTextFieldConfirm.requestFocus();
+            }
+        }
+    }
     /**
      * @param args the command line arguments
      */

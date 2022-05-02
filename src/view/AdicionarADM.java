@@ -5,7 +5,9 @@
  */
 package view;
 
+import com.sun.glass.events.KeyEvent;
 import controller.AgendaController;
+import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 
 /**
@@ -39,6 +41,7 @@ public class AdicionarADM extends javax.swing.JFrame {
         jLabelFundoAdd = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("v3.0 - Adicionar Administrador");
         setResizable(false);
         getContentPane().setLayout(null);
 
@@ -54,6 +57,11 @@ public class AdicionarADM extends javax.swing.JFrame {
 
         jTextFieldNome.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         jTextFieldNome.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextFieldNome.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTextFieldNomeKeyPressed(evt);
+            }
+        });
         getContentPane().add(jTextFieldNome);
         jTextFieldNome.setBounds(70, 70, 200, 40);
 
@@ -64,6 +72,11 @@ public class AdicionarADM extends javax.swing.JFrame {
 
         jPasswordField.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         jPasswordField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jPasswordField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jPasswordFieldKeyPressed(evt);
+            }
+        });
         getContentPane().add(jPasswordField);
         jPasswordField.setBounds(70, 150, 200, 40);
 
@@ -84,19 +97,42 @@ public class AdicionarADM extends javax.swing.JFrame {
 
     private void jButtonAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAdicionarActionPerformed
         // ADICIONAR ADM
-        AgendaController agendaC = new AgendaController();
-        
-        String nome = jTextFieldNome.getText();
-        String password = jPasswordField.getText();
-        
-        if(agendaC.addAdmin(nome, password)){
-            JOptionPane.showMessageDialog(null, "Administrador Adicionado!");
-            dispose();
-        }else{
-            agendaC.erro_add();
-        }
+        addAdm();
     }//GEN-LAST:event_jButtonAdicionarActionPerformed
 
+    private void jTextFieldNomeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldNomeKeyPressed
+        // ENTER PRESSED
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+            addAdm();
+        }
+    }//GEN-LAST:event_jTextFieldNomeKeyPressed
+
+    private void jPasswordFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPasswordFieldKeyPressed
+        // ENTER PRESSED
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+            addAdm();
+        }
+    }//GEN-LAST:event_jPasswordFieldKeyPressed
+    private boolean isValid(String name){
+        return Pattern.matches("|^[\\pL\\s]+$|u", name);
+    }
+    private void addAdm(){
+        AgendaController agendaC = new AgendaController();
+        String nome = jTextFieldNome.getText();
+        String password = jPasswordField.getText();
+        if(nome == null || nome.isEmpty() || nome.trim().isEmpty() || password == null || password.isEmpty() || password.trim().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Preencha todos campos!");
+        }else if(!isValid(nome)){
+            JOptionPane.showMessageDialog(null, "Nome inválidos!");
+        }else{
+            if(agendaC.addAdmin(nome, password)){
+                JOptionPane.showMessageDialog(null, "Administrador Adicionado!");
+                dispose();
+            }else{
+                agendaC.erro_add();
+            }
+        }
+    }
     /**
      * @param args the command line arguments
      */

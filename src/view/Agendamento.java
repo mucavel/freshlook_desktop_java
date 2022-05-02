@@ -57,7 +57,7 @@ public class Agendamento extends javax.swing.JFrame {
         jLabelAgendamentoFundo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("v2.0 - Agendamento");
+        setTitle("v3.0 - Agendamento");
         setResizable(false);
         getContentPane().setLayout(null);
 
@@ -266,9 +266,9 @@ public class Agendamento extends javax.swing.JFrame {
                     }else{
                         agendaControll.agendaErro();
                     }
-                } catch (NumberFormatException r){
+                } catch (NumberFormatException nrFormat){
                     agendaControll.idadeErro();
-                } catch (NullPointerException n){
+                } catch (NullPointerException nullPointer){
                     agendaControll.dataErro();
                 }
             }

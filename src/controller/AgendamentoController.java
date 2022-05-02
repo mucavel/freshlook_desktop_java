@@ -28,7 +28,7 @@ public class AgendamentoController {
     ResultSet rs;
     
     
-    public boolean isValid(String name){
+    private boolean isValid(String name){
         return Pattern.matches("|^[\\pL\\s]+$|u", name);
     }
     public boolean dados(String nome, int telefone, int idade, String corte, String preco, String dia, String hora, String observ, String telSub) {  
@@ -77,8 +77,8 @@ public class AgendamentoController {
                                 return true;
                                 
                             }
-                        } catch (SQLException ex) {
-                            Logger.getLogger(AgendamentoController.class.getName()).log(Level.SEVERE, null, ex);
+                        } catch (SQLException sql) {
+                            Logger.getLogger(AgendamentoController.class.getName()).log(Level.SEVERE, null, sql);
                         }
                     }
                 }else{

@@ -65,7 +65,7 @@ public class Agenda extends javax.swing.JFrame {
         jMenuItemSair = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("v2.0 - Agenda");
+        setTitle("v3.0 - Agenda");
         setResizable(false);
         getContentPane().setLayout(null);
 
