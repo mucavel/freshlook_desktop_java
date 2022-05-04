@@ -55,7 +55,20 @@ public class AgendaController {
         }
         return false;
     }
-
+    public boolean removerCliente(int id){
+        Connection conn = conexao.conexao();
+        
+        try {
+            PreparedStatement cmd = conn.prepareStatement("DELETE FROM `clientes` WHERE id_cliente = ?");
+            cmd.setInt(1, id);
+            cmd.executeUpdate();
+            
+            return true;
+        } catch (SQLException ex) {
+            Logger.getLogger(AgendaController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
+    }
     public void erro_add() {
         JOptionPane.showMessageDialog(null, "Erro ao adicionar!");
     }

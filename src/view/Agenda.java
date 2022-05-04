@@ -16,6 +16,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -127,14 +128,14 @@ public class Agenda extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Nome", "Telefone", "Idade", "Corte", "Preço", "Data", "Hora", "Observações"
+                "ID", "Nome", "Telefone", "Idade", "Corte", "Preço", "Data", "Hora", "Observações"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -149,20 +150,22 @@ public class Agenda extends javax.swing.JFrame {
         jTableTabela.getTableHeader().setReorderingAllowed(false);
         jScrollPaneTabela.setViewportView(jTableTabela);
         if (jTableTabela.getColumnModel().getColumnCount() > 0) {
-            jTableTabela.getColumnModel().getColumn(0).setMinWidth(220);
-            jTableTabela.getColumnModel().getColumn(0).setMaxWidth(220);
-            jTableTabela.getColumnModel().getColumn(1).setMinWidth(100);
-            jTableTabela.getColumnModel().getColumn(1).setMaxWidth(100);
-            jTableTabela.getColumnModel().getColumn(2).setMinWidth(50);
-            jTableTabela.getColumnModel().getColumn(2).setMaxWidth(50);
-            jTableTabela.getColumnModel().getColumn(3).setMinWidth(150);
-            jTableTabela.getColumnModel().getColumn(3).setMaxWidth(150);
-            jTableTabela.getColumnModel().getColumn(4).setMinWidth(100);
-            jTableTabela.getColumnModel().getColumn(4).setMaxWidth(100);
+            jTableTabela.getColumnModel().getColumn(0).setMinWidth(2);
+            jTableTabela.getColumnModel().getColumn(0).setMaxWidth(2);
+            jTableTabela.getColumnModel().getColumn(1).setMinWidth(220);
+            jTableTabela.getColumnModel().getColumn(1).setMaxWidth(220);
+            jTableTabela.getColumnModel().getColumn(2).setMinWidth(100);
+            jTableTabela.getColumnModel().getColumn(2).setMaxWidth(100);
+            jTableTabela.getColumnModel().getColumn(3).setMinWidth(50);
+            jTableTabela.getColumnModel().getColumn(3).setMaxWidth(50);
+            jTableTabela.getColumnModel().getColumn(4).setMinWidth(150);
+            jTableTabela.getColumnModel().getColumn(4).setMaxWidth(150);
             jTableTabela.getColumnModel().getColumn(5).setMinWidth(100);
             jTableTabela.getColumnModel().getColumn(5).setMaxWidth(100);
-            jTableTabela.getColumnModel().getColumn(6).setMinWidth(70);
-            jTableTabela.getColumnModel().getColumn(6).setMaxWidth(70);
+            jTableTabela.getColumnModel().getColumn(6).setMinWidth(100);
+            jTableTabela.getColumnModel().getColumn(6).setMaxWidth(100);
+            jTableTabela.getColumnModel().getColumn(7).setMinWidth(70);
+            jTableTabela.getColumnModel().getColumn(7).setMaxWidth(70);
         }
 
         getContentPane().add(jScrollPaneTabela);
@@ -267,8 +270,27 @@ public class Agenda extends javax.swing.JFrame {
 
     private void jButtonRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRemoverActionPerformed
         // APAGAR CLIENTE
-        int row = jTableTabela.getSelectedRow();
-//        System.out.println(row);
+        try{
+            if(jTableTabela.getSelectedRow() != -2){
+                int id_cliente = (int) jTableTabela.getValueAt(jTableTabela.getSelectedRow(), 0);
+                int resposta = JOptionPane.showConfirmDialog(null, "Deseja mesmo Remover o Cliente?", "AVISO!",JOptionPane.YES_NO_OPTION);
+                if(resposta == JOptionPane.YES_OPTION){
+                    if(agendaC.removerCliente(id_cliente)){
+                        JOptionPane.showMessageDialog(null, "Cliente Removido!");
+                        int index = jComboBoxClientes.getSelectedIndex();
+                        if(index == 0){
+                            clientesHoje();
+                        }else{
+                            todosClientes();
+                        }
+                    }else{
+                        JOptionPane.showMessageDialog(null, "Erro! Não foi possível remover.");
+                    }
+                }
+            }
+        }catch(ArrayIndexOutOfBoundsException e){
+            JOptionPane.showMessageDialog(null, "Selecione um Cliente!");
+        }
         
     }//GEN-LAST:event_jButtonRemoverActionPerformed
 
@@ -296,6 +318,7 @@ public class Agenda extends javax.swing.JFrame {
                 Vector vector = new Vector();
                 
                 for(int i=0; i<=c; i++){
+                    vector.add(result.getInt("id_cliente"));
                     vector.add(result.getString("nome"));
                     vector.add(result.getString("telefone"));
                     vector.add(result.getString("idade"));
@@ -327,6 +350,7 @@ public class Agenda extends javax.swing.JFrame {
                 Vector vector = new Vector();
                 
                 for(int i=0; i<=c; i++){
+                    vector.add(result.getInt("id_cliente"));
                     vector.add(result.getString("nome"));
                     vector.add(result.getString("telefone"));
                     vector.add(result.getString("idade"));
