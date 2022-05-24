@@ -21,7 +21,7 @@ public class Conexao {
         Connection conn = null;
         try {
             //LOCAL SERVER
-            String url = "jdbc:mysql://127.0.0.1/freshlookDB?user=root&password=";
+            String url = "jdbc:mysql://127.0.0.1:3306/freshlookDB?user=root&password=";
             //REMOTE SERVER
 //            String url = "jdbc:mysql://sql4.freesqldatabase.com:3306/sql4489222?user=sql4489222&password=MLTvjMPe7K";
             conn = DriverManager.getConnection(url);

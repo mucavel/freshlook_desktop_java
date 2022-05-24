@@ -139,8 +139,8 @@ public class Login extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jPasswordFieldKeyPressed
     private void entrar(){
-        String nome = (jTextFieldUsuario.getText());
-        String password = (jPasswordField.getText());
+        String nome = jTextFieldUsuario.getText();
+        String password = jPasswordField.getText();
         
         if(loginC.entrar(nome, password)){
             dispose();

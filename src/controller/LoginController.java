@@ -46,8 +46,9 @@ public class LoginController {
                 }
             } catch (SQLException sql) {
                 JOptionPane.showMessageDialog(null, "Erro na base de dados");
-            }catch (NullPointerException nullpointer){
-                JOptionPane.showMessageDialog(null, "Erro!");
+            }
+            catch (NullPointerException nullpointer){
+                JOptionPane.showMessageDialog(null, "Erro!"+nullpointer.getMessage());
             }
   
         }

@@ -128,7 +128,7 @@ public class Agendamento extends javax.swing.JFrame {
         jLabelCorte.setBounds(30, 360, 100, 19);
 
         jComboBoxCorte.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        jComboBoxCorte.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Juba", "Carreca", "Punk", "Escovinha Grossa", "Escovinha Fina", "Barba", "Cabelo & Barba" }));
+        jComboBoxCorte.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Juba", "Carreca", "Punk", "Escovinha Grossa", "Escovinha Fina", "Coloração de Cabelo", "Barba c/ Navalha", "Barba c/ Máquina", "Cabelo e Barba c/ Navalha", "Cabelo e Barba c/ Máquina", "Máscara Facial" }));
         jComboBoxCorte.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBoxCorteActionPerformed(evt);
@@ -146,7 +146,7 @@ public class Agendamento extends javax.swing.JFrame {
         jTextFieldPreco.setEditable(false);
         jTextFieldPreco.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         jTextFieldPreco.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextFieldPreco.setText("50 Meticais");
+        jTextFieldPreco.setText("100 Meticais");
         jTextFieldPreco.setBorder(null);
         getContentPane().add(jTextFieldPreco);
         jTextFieldPreco.setBounds(30, 470, 240, 40);
@@ -411,25 +411,37 @@ public class Agendamento extends javax.swing.JFrame {
         switch (index) {
             
         case 0:
-            jTextFieldPreco.setText("50 Meticais");
-            break;
-        case 1:
-            jTextFieldPreco.setText("80 Meticais");
-            break;
-        case 2:
-            jTextFieldPreco.setText("150 Meticais");
-            break; 
-        case 3:
-            jTextFieldPreco.setText("120 Meticais");
-            break; 
-        case 4:
             jTextFieldPreco.setText("100 Meticais");
             break;
-        case 5:
+        case 1:
+            jTextFieldPreco.setText("120 Meticais");
+            break;
+        case 2:
+            jTextFieldPreco.setText("170 Meticais");
+            break; 
+        case 3:
+            jTextFieldPreco.setText("150 Meticais");
+            break; 
+        case 4:
             jTextFieldPreco.setText("130 Meticais");
             break;
-        case 6:
+        case 5:
             jTextFieldPreco.setText("200 Meticais");
+            break;
+        case 6:
+            jTextFieldPreco.setText("150 Meticais");
+            break;
+        case 7:
+            jTextFieldPreco.setText("100 Meticais");
+            break;
+        case 8:
+            jTextFieldPreco.setText("300 Meticais");
+            break;
+        case 9:
+            jTextFieldPreco.setText("250 Meticais");
+            break;
+        case 10:
+            jTextFieldPreco.setText("400 Meticais");
             break;
         default:
             break;
