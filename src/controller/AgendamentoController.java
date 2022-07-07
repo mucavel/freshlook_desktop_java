@@ -21,7 +21,7 @@ import model.DadosAgenda;
  */
 
 public class AgendamentoController {
-    DadosAgenda dadosAgenda = new DadosAgenda();
+    
     Conexao conexao = new Conexao();
     Connection conn = conexao.conexao();
     PreparedStatement cmd;
@@ -31,7 +31,9 @@ public class AgendamentoController {
     private boolean isValid(String name){
         return Pattern.matches("|^[\\pL\\s]+$|u", name);
     }
-    public boolean dados(String nome, int telefone, int idade, String corte, String preco, String dia, String hora, String observ, String telSub) {  
+    public boolean dados(String nome, int telefone, int idade, String corte, String preco, String dia, String hora, String observ, String telSub) {
+        DadosAgenda dadosAgenda = new DadosAgenda();
+        
         dadosAgenda.setNome(nome);
         dadosAgenda.setTelefone(telefone);
         dadosAgenda.setIdade(idade);

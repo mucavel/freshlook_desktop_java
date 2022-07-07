@@ -24,7 +24,6 @@ import javax.swing.table.DefaultTableModel;
  * @author Carlos Mucavel
  */
 public class Agenda extends javax.swing.JFrame {
-    AgendaController agendaC = new AgendaController();
     PreparedStatement query;
     ResultSet result;
     ResultSetMetaData resultMeta;
@@ -233,6 +232,7 @@ public class Agenda extends javax.swing.JFrame {
   
     private void jMenuItemBloquearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemBloquearActionPerformed
         // BLOQUEAR
+        AgendaController agendaC = new AgendaController();
         if(agendaC.bloquear()){
             dispose();
         }
@@ -240,11 +240,13 @@ public class Agenda extends javax.swing.JFrame {
 
     private void jMenuItemAddAdmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemAddAdmActionPerformed
         // ADICONAR ADMINISTRADOR
+        AgendaController agendaC = new AgendaController();
         agendaC.confirmID();
     }//GEN-LAST:event_jMenuItemAddAdmActionPerformed
 
     private void jMenuItemSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemSairActionPerformed
         // SAIR
+        AgendaController agendaC = new AgendaController();
         agendaC.sair();
     }//GEN-LAST:event_jMenuItemSairActionPerformed
 
@@ -270,6 +272,7 @@ public class Agenda extends javax.swing.JFrame {
 
     private void jButtonRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRemoverActionPerformed
         // APAGAR CLIENTE
+      AgendaController agendaC = new AgendaController();
         try{
             if(jTableTabela.getSelectedRow() != -2){
                 int id_cliente = (int) jTableTabela.getValueAt(jTableTabela.getSelectedRow(), 0);
@@ -296,6 +299,7 @@ public class Agenda extends javax.swing.JFrame {
 
     private void jMenuItemAgendarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemAgendarActionPerformed
         // AGENDAMENTO
+       AgendaController agendaC = new AgendaController();
        agendaC.agendar();
     }//GEN-LAST:event_jMenuItemAgendarActionPerformed
     public void clientesHoje(){

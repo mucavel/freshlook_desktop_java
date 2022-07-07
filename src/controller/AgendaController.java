@@ -12,28 +12,25 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import view.AdicionarADM;
-import view.Agendamento;
 import view.ConfirmarID;
 import view.Login;
-
+import view.Agendamento;
 /**
  *
  * @author Carlos Mucavel
  */
 public class AgendaController {
-    Login login = new Login();
-    AdicionarADM addAdm = new AdicionarADM();
-    ConfirmarID confID = new ConfirmarID();
-    Agendamento agendamento = new Agendamento();
+   
     Conexao conexao = new Conexao();
     
     public boolean bloquear() {
+        Login login = new Login();
         login.setVisible(true);
         return true;
     }
 
     public void confirmID() {
+        ConfirmarID confID = new ConfirmarID();
         confID.setVisible(true);
     }
 
@@ -74,6 +71,7 @@ public class AgendaController {
     }
 
     public void agendar() {
+        Agendamento agendamento = new Agendamento();
         agendamento.setVisible(true);
     }
     

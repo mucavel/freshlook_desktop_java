@@ -6,16 +6,17 @@
 package view;
 
 import controller.AgendamentoController;
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.Date;
+//import javax.swing.JOptionPane;
 /**
  *
  * @author Carlos Mucavel
  */
 public class Agendamento extends javax.swing.JFrame {
-    AgendamentoController agendaControll = new AgendamentoController();
     /**
      * Creates new form Agendamento
      */
@@ -23,7 +24,6 @@ public class Agendamento extends javax.swing.JFrame {
         initComponents();
         data();
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -221,6 +221,11 @@ public class Agendamento extends javax.swing.JFrame {
         jButtonSair.setBounds(630, 370, 130, 40);
 
         jLabelAgendamentoFundo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/fundoAgendamento.jpg"))); // NOI18N
+        jLabelAgendamentoFundo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabelAgendamentoFundoMouseEntered(evt);
+            }
+        });
         getContentPane().add(jLabelAgendamentoFundo);
         jLabelAgendamentoFundo.setBounds(-6, -5, 810, 560);
 
@@ -241,6 +246,8 @@ public class Agendamento extends javax.swing.JFrame {
     
     private void jButtonAgendarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAgendarActionPerformed
         // Agendar
+    AgendamentoController agendaControll = new AgendamentoController();
+    
         try{
             String nome = jTextFieldNome.getText();
             String tel = jTextFieldTel.getText();
@@ -313,19 +320,25 @@ public class Agendamento extends javax.swing.JFrame {
     private void jDateChooserDiaPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jDateChooserDiaPropertyChange
         // Input data
         jComboBoxHora.removeAllItems();
-        hora();
     }//GEN-LAST:event_jDateChooserDiaPropertyChange
+
+    private void jLabelAgendamentoFundoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelAgendamentoFundoMouseEntered
+        // TODO add your handling code here:
+        hora();
+    }//GEN-LAST:event_jLabelAgendamentoFundoMouseEntered
     private void data(){
         jDateChooserDia.setDate(new Date());
     }
-    private void hora(){
+    private void hora(){  
         jComboBoxHora.removeAllItems();
-        SimpleDateFormat dateFr = new SimpleDateFormat("yyyy-MM-dd");
-        String data = dateFr.format(jDateChooserDia.getDate());
-        LocalDate atualDate = LocalDate.parse(data);
+        
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        String d = dateFormat.format(jDateChooserDia.getDate());
+        LocalDate atualDate = LocalDate.parse(d);
         DayOfWeek DiaSemana = DayOfWeek.from(atualDate);
         
         int diaSemana = DiaSemana.getValue();
+        
         if(diaSemana >=1 && diaSemana <=5){
             int horaMin = 8;
             int horaMax = 22;

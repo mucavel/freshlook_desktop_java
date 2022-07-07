@@ -35,7 +35,7 @@ public class LoginController {
             return false;
         }else{
             try {
-                cmd = conn.prepareStatement("SELECT nome, pass FROM administradores WHERE nome=? and pass=md5(?)");
+                cmd = conn.prepareStatement("SELECT `nome`, `pass` FROM `administradores` WHERE `nome`=? and `pass`=md5(?)");
                 cmd.setString(1, nome);
                 cmd.setString(2, pass);
                 ResultSet rs = cmd.executeQuery();
@@ -45,10 +45,10 @@ public class LoginController {
                     return true;
                 }
             } catch (SQLException sql) {
-                JOptionPane.showMessageDialog(null, "Erro na base de dados");
+                JOptionPane.showMessageDialog(null, "Erro com base de dados");
             }
-            catch (NullPointerException nullpointer){
-                JOptionPane.showMessageDialog(null, "Erro!"+nullpointer.getMessage());
+            catch (NullPointerException np){
+                JOptionPane.showMessageDialog(null, "Ocorreu um erro!"+ np );
             }
   
         }
@@ -69,7 +69,7 @@ public class LoginController {
         String passConf = password;
         
         try {
-            cmd = conn.prepareStatement("SELECT nome, pass FROM administradores WHERE nome=? and pass=md5(?)");
+            cmd = conn.prepareStatement("SELECT `nome`, `pass` FROM `administradores` WHERE `nome`=? and `pass`=md5(?)");
             cmd.setString(1, nomeConf);
             cmd.setString(2, passConf);
             ResultSet rs = cmd.executeQuery();
