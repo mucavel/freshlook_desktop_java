@@ -4,7 +4,7 @@ Versão Desktop da Aplicação de gerenciamento de clientes em barbearias.
 Antes de executar a Aplicação, precisa ter instalado o java em seu computador.
 Baixe-o a apartir do link: (certifique-se de baixar a versão compatível com seu PC)
 
-https://www.oracle.com/java/technologies/downloads/
+https://www.java.com/en/download/
 
 Após instalar, importe a Base de Dados em seu PC.
 NB: Precisa ter o Apache e MySQL instalado, 
@@ -21,7 +21,7 @@ Before running the Application, you must have java installed on your computer.
 Download it from the link: (make sure you download the version compatible with your PC)
 
 
-https://www.oracle.com/java/technologies/downloads/
+https://www.java.com/en/download/
 
 
 After installing, import the Database on your PC.
