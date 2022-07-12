@@ -173,6 +173,11 @@ public class Agendamento extends javax.swing.JFrame {
         getContentPane().add(jLabelHora);
         jLabelHora.setBounds(330, 200, 50, 19);
 
+        jComboBoxHora.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jComboBoxHoraMouseEntered(evt);
+            }
+        });
         getContentPane().add(jComboBoxHora);
         jComboBoxHora.setBounds(330, 230, 210, 40);
 
@@ -221,11 +226,6 @@ public class Agendamento extends javax.swing.JFrame {
         jButtonSair.setBounds(630, 370, 130, 40);
 
         jLabelAgendamentoFundo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/fundoAgendamento.jpg"))); // NOI18N
-        jLabelAgendamentoFundo.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jLabelAgendamentoFundoMouseEntered(evt);
-            }
-        });
         getContentPane().add(jLabelAgendamentoFundo);
         jLabelAgendamentoFundo.setBounds(-6, -5, 810, 560);
 
@@ -322,10 +322,10 @@ public class Agendamento extends javax.swing.JFrame {
         jComboBoxHora.removeAllItems();
     }//GEN-LAST:event_jDateChooserDiaPropertyChange
 
-    private void jLabelAgendamentoFundoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelAgendamentoFundoMouseEntered
-        // TODO add your handling code here:
+    private void jComboBoxHoraMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jComboBoxHoraMouseEntered
+        // Mudar hora
         hora();
-    }//GEN-LAST:event_jLabelAgendamentoFundoMouseEntered
+    }//GEN-LAST:event_jComboBoxHoraMouseEntered
     private void data(){
         jDateChooserDia.setDate(new Date());
     }

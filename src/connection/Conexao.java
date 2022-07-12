@@ -27,6 +27,7 @@ public class Conexao {
             
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Ocorreu um erro! Verifique sua conexão.");
+            System.exit(0);
         } 
         return conn;
     } 

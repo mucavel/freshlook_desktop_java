@@ -51,7 +51,7 @@ public class Agenda extends javax.swing.JFrame {
         jLabelAgenda = new javax.swing.JLabel();
         jButtonRemover = new javax.swing.JButton();
         jComboBoxClientes = new javax.swing.JComboBox<>();
-        jButton1 = new javax.swing.JButton();
+        jButtonAtualizar = new javax.swing.JButton();
         jScrollPaneTabela = new javax.swing.JScrollPane();
         jTableTabela = new javax.swing.JTable();
         jLabelFundoAgenda = new javax.swing.JLabel();
@@ -111,15 +111,15 @@ public class Agenda extends javax.swing.JFrame {
         getContentPane().add(jComboBoxClientes);
         jComboBoxClientes.setBounds(10, 170, 130, 40);
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/atualizar.png"))); // NOI18N
-        jButton1.setText("Atualizar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jButtonAtualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/images/atualizar.png"))); // NOI18N
+        jButtonAtualizar.setText("Atualizar");
+        jButtonAtualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jButtonAtualizarActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1);
-        jButton1.setBounds(140, 170, 110, 40);
+        getContentPane().add(jButtonAtualizar);
+        jButtonAtualizar.setBounds(140, 170, 110, 40);
 
         jTableTabela.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         jTableTabela.setModel(new javax.swing.table.DefaultTableModel(
@@ -151,14 +151,14 @@ public class Agenda extends javax.swing.JFrame {
         if (jTableTabela.getColumnModel().getColumnCount() > 0) {
             jTableTabela.getColumnModel().getColumn(0).setMinWidth(2);
             jTableTabela.getColumnModel().getColumn(0).setMaxWidth(2);
-            jTableTabela.getColumnModel().getColumn(1).setMinWidth(220);
-            jTableTabela.getColumnModel().getColumn(1).setMaxWidth(220);
+            jTableTabela.getColumnModel().getColumn(1).setMinWidth(210);
+            jTableTabela.getColumnModel().getColumn(1).setMaxWidth(210);
             jTableTabela.getColumnModel().getColumn(2).setMinWidth(100);
             jTableTabela.getColumnModel().getColumn(2).setMaxWidth(100);
             jTableTabela.getColumnModel().getColumn(3).setMinWidth(50);
             jTableTabela.getColumnModel().getColumn(3).setMaxWidth(50);
-            jTableTabela.getColumnModel().getColumn(4).setMinWidth(150);
-            jTableTabela.getColumnModel().getColumn(4).setMaxWidth(150);
+            jTableTabela.getColumnModel().getColumn(4).setMinWidth(190);
+            jTableTabela.getColumnModel().getColumn(4).setMaxWidth(190);
             jTableTabela.getColumnModel().getColumn(5).setMinWidth(100);
             jTableTabela.getColumnModel().getColumn(5).setMaxWidth(100);
             jTableTabela.getColumnModel().getColumn(6).setMinWidth(100);
@@ -250,7 +250,7 @@ public class Agenda extends javax.swing.JFrame {
         agendaC.sair();
     }//GEN-LAST:event_jMenuItemSairActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jButtonAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAtualizarActionPerformed
         // BOTAO ATUALIZAR
         int index = jComboBoxClientes.getSelectedIndex();
         if(index == 0){
@@ -258,7 +258,7 @@ public class Agenda extends javax.swing.JFrame {
         }else{
             todosClientes();
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jButtonAtualizarActionPerformed
 
     private void jComboBoxClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxClientesActionPerformed
         // CLIENTES
@@ -407,7 +407,7 @@ public class Agenda extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButtonAtualizar;
     private javax.swing.JButton jButtonRemover;
     private javax.swing.JComboBox<String> jComboBoxClientes;
     private javax.swing.JLabel jLabelAgenda;
