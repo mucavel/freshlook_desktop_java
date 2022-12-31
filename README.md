@@ -1,5 +1,5 @@
-# freshlook_desktop_java
-Versão Desktop da Aplicação de gerenciamento de clientes em barbearias.
+# Freshlook Desktop Java
+Versão Desktop da Aplicação de Gerenciamento de Clientes em Barbearias.
 
 Antes de executar a Aplicação, precisa ter instalado o java em seu computador.
 Baixe-o a apartir do link: (certifique-se de baixar a versão compatível com seu PC)
