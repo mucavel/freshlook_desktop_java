@@ -22,13 +22,17 @@ public class Conexao {
         try {
             //SERVER SETTINGS: DB-SERVER:PORT/DB-NAME?USER&PASSWORD
             //LOCAL SERVER
-            String url = "jdbc:mysql://127.0.0.1:3306/freshlookDB?user=root&password=";
+            //String url = "jdbc:mysql://127.0.0.1:3306/freshlookDB?user=root&password=";
+            //REMOTE TEST SERVER
+            String url = "jdbc:mysql://sql7.freesqldatabase.com:3306/sql7587414?user=sql7587414&password=xq6lM5T3Gr";
+            
             conn = DriverManager.getConnection(url);
             
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Ocorreu um erro! Verifique sua conexão.");
+            JOptionPane.showMessageDialog(null, "Ocorreu um erro! Verifique sua conexão."+e);
             System.exit(0);
         } 
         return conn;
+        
     } 
 }

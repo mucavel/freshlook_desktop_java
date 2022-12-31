@@ -5,7 +5,7 @@
  */
 package view;
 
-import com.sun.glass.events.KeyEvent;
+import java.awt.event.KeyEvent;
 import controller.AgendaController;
 import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
