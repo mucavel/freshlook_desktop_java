@@ -23,12 +23,12 @@ public class Conexao {
             //SERVER SETTINGS: DB-SERVER:PORT/DB-NAME?USER&PASSWORD
             //LOCAL SERVER
             String url = "jdbc:mysql://127.0.0.1:3306/freshlookDB?user=root&password=";
-            
+
             
             conn = DriverManager.getConnection(url);
             
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Ocorreu um erro! Verifique sua conexão."+e);
+            JOptionPane.showMessageDialog(null, "Ocorreu um erro!");
             System.exit(0);
         } 
         return conn;
